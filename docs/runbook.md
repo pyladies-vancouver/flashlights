@@ -1,9 +1,9 @@
-# Runbook: the PyLadies Vancouver's instance
+# Runbook: PyLadies Vancouver's instance
 
 The instance runs on Heroku from this repository's image, under
 `vancouver.flashlights.app`, with mail through Mailgun and uploads in an
 S3-compatible bucket. The core's [deployment guide](https://docs.flashlights.app/0.1.0/developer/deployment/)
-has the general case; this page is what is specific to the PyLadies Vancouver.
+has the general case; this page is what is specific to PyLadies Vancouver.
 
 ## First deployment
 
@@ -32,10 +32,9 @@ has the general case; this page is what is specific to the PyLadies Vancouver.
    fresh database, the tests pass.
 3. Deploy. Watch `heroku logs --tail --dyno release` for the migrations,
    then `--dyno web` and `--dyno worker`.
-4. If the help links are the core's (`DOCS_URL` unset), they follow the
-   image on their own; the PyLadies Vancouver sets `DOCS_URL` to its own site,
-   which links to the core docs at the pinned version, so move that link
-   by hand.
+4. The help links follow the image on their own while `DOCS_URL` is unset.
+   Once the handbook has a Flashlights page, set `DOCS_URL` to it and move
+   that page's link to the core docs to the new version by hand.
 
 ## Rolling back
 

@@ -1,7 +1,6 @@
 {
   "name": "PyLadies Vancouver",
-  "description": "The PyLadies Vancouver's Flashlights instance.",
-  "repository": "https://github.com/pyladies/pyladies-vancouver-flashlights",
+  "description": "PyLadies Vancouver's Flashlights instance.",
   "keywords": [
     "django",
     "events",
@@ -89,17 +88,9 @@
       "description": "Served by the instance from the app's static files.",
       "value": "https://vancouver.flashlights.app/static/flashlights_vancouver/logo.png"
     },
-    "SITE_FAVICON": {
-      "description": "Served by the instance from the app's static files.",
-      "value": "https://vancouver.flashlights.app/static/flashlights_vancouver/favicon.png"
-    },
     "SITE_OG_IMAGE": {
       "description": "Served by the instance from the app's static files.",
       "value": "https://vancouver.flashlights.app/static/flashlights_vancouver/share.png"
-    },
-    "DOCS_URL": {
-      "description": "The community's own documentation.",
-      "value": "https://vancouver.pyladies.com/handbook/"
     },
     "VOLUNTEERING_ENABLED": {
       "description": "false hides the Volunteer hub.",

@@ -1,4 +1,4 @@
-# The PyLadies Vancouver's instance: the core image at a pinned version, plus this
+# PyLadies Vancouver's instance: the core image at a pinned version, plus this
 # repository's app. Upgrading the core is a change to the tag on the first
 # line. The second collectstatic adds the app's static files to the image,
 # with the placeholder values the core's own build uses.

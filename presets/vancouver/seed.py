@@ -424,8 +424,9 @@ def _volunteering(edition, organizers):
                 "application_status": ApplicationStatus.APPROVED,
                 "region": Region.NORTH_AMERICA,
                 "availability_hours_per_week": 4,
-                "github_username": username,
-                "discord_username": username,
+                # Real people: a handle only where they publish one.
+                "github_username": username if username == "mariatta" else "",
+                "discord_username": "",
             },
         )
     teams = {}

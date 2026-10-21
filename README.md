@@ -1,13 +1,13 @@
 # PyLadies Vancouver on Flashlights
 
-The PyLadies Vancouver's own [Flashlights](https://github.com/mariatta/flashlights)
+PyLadies Vancouver's own [Flashlights](https://github.com/mariatta/flashlights)
 instance: a meetup group with one edition per year, each meetup's talks as sessions in the venue's room, free and in person, the PyLadies Slack as the chat, and registrations from Luma as a CSV. The public site is <https://vancouver.pyladies.com/>.
 
-This repository holds only what is the PyLadies Vancouver's. The core is consumed
+This repository holds only what is PyLadies Vancouver's. The core is consumed
 as an image, never copied: `Dockerfile` starts `FROM
 ghcr.io/mariatta/flashlights:0.1.0` and adds the `flashlights_vancouver` app, which the
 core loads through `EXTRA_APPS`. Upgrading the core is a one-line change to
-that tag, in a pull request that CI checks against the PyLadies Vancouver's own
+that tag, in a pull request that CI checks against PyLadies Vancouver's own
 data. The core's [community apps guide](https://docs.flashlights.app/0.1.0/developer/community_apps/)
 is the contract this repository relies on.
 
@@ -16,11 +16,11 @@ is the contract this repository relies on.
 | Path | What it is |
 |---|---|
 | `Dockerfile` | The core image plus this repository's app and static files |
-| `flashlights_vancouver/` | The Django app: the logo and share image today; its own pages, models, templates and commands when the PyLadies Vancouver needs them |
+| `flashlights_vancouver/` | The Django app: the logo and the share image today; its own pages, models, templates and commands when PyLadies Vancouver needs them |
 | `presets/vancouver/` | The demo data (`seed.py`) and branding (`env`) for a local or review instance, loaded with the core's `manage.py load_preset` |
 | `compose.yml`, `Makefile` | Run the instance locally from the image, on <http://127.0.0.1:8008/> |
 | `app.json`, `heroku.yml` | The Heroku deployment: add-ons, processes, every variable with a description |
-| `.env.example` | The production variables, with the PyLadies Vancouver's values filled in where they are not secrets |
+| `.env.example` | The production variables, with PyLadies Vancouver's values filled in where they are not secrets |
 | `docs/runbook.md` | Deploying, upgrading and rolling back |
 | `tests/` | The app's tests, run inside the image against the pinned core |
 
@@ -41,8 +41,8 @@ everything and drops the database.
 
 - Anything another community could use belongs in the core: open an issue
   there, and it arrives as a setting or a feature in a later release.
-- The PyLadies Vancouver's data, name, colours, links and deployment belong here.
-- A PyLadies Vancouver need the core cannot meet by configuration is a core
+- PyLadies Vancouver's data, name, colours, links and deployment belong here.
+- A need the core cannot meet by configuration is a core
   extension point first (a setting, a signal, a template block), then this
   app uses it. Copying a core template into `flashlights_vancouver/templates/` is the last
   resort, and the [adapting guide](https://docs.flashlights.app/0.1.0/user/adapting/)

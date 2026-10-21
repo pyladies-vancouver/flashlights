@@ -48,7 +48,6 @@ services:
       DJANGO_EMAIL_PORT: "1025"
       DJANGO_DEFAULT_FROM_EMAIL: PyLadies Vancouver <noreply@mail.flashlights.app>
       SITE_LOGO: http://127.0.0.1:8008/static/flashlights_vancouver/logo.png
-      SITE_FAVICON: http://127.0.0.1:8008/static/flashlights_vancouver/favicon.png
       SITE_OG_IMAGE: http://127.0.0.1:8008/static/flashlights_vancouver/share.png
     depends_on:
       postgres:

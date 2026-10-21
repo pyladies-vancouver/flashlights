@@ -21,7 +21,7 @@ def test_the_app_is_loaded_ahead_of_the_core():
     assert apps.index("flashlights_vancouver") < apps.index("portal")
 
 
-@pytest.mark.parametrize("name", ["logo.png", "favicon.png", "share.png"])
+@pytest.mark.parametrize("name", ["logo.png", "share.png"])
 def test_the_images_the_identity_variables_point_at_exist(name):
     assert finders.find(f"flashlights_vancouver/{name}")
 
