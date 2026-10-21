@@ -6,7 +6,8 @@ CSV. Organizers and speakers as the site lists them; emails are invented
 (example.org); volunteers and registrants are made up.
 
 Loaded by ``manage.py load_preset``; it lives in the community's own
-repository, not the core's, because it is a real community's data. All passwords: password123.
+repository, not the core's, because it is a real community's data.
+All passwords: password123.
 """
 
 from datetime import UTC, date, datetime, time, timedelta
