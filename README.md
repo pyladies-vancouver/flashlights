@@ -37,6 +37,15 @@ prints the logins. Emails land in maildev at <http://127.0.0.1:9008/>.
 `make test` runs the app's tests inside the image, and `make down` stops
 everything and drops the database.
 
+## Deploy
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+The button creates the app on Heroku from `app.json` (the button needs the
+repository on GitHub; until then the runbook's command line path does the
+same). `docs/runbook.md` has the rest: the secrets, the domain, upgrades
+and rollback.
+
 ## Where a change goes
 
 - Anything another community could use belongs in the core: open an issue
