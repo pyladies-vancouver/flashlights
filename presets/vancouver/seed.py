@@ -3,7 +3,7 @@
 each meetup's talks as sessions in the venue's room. In person, free, no
 recordings, the PyLadies Slack as the chat, registrations from Luma as a
 CSV. Every person is invented, names and example.org emails alike; the
-venues and nights are the chapter's real ones.
+venues, nights and talks are the chapter's real ones.
 
 Loaded by ``manage.py load_preset``; it lives in the community's own
 repository, not the core's, because it is a real community's data.
@@ -81,7 +81,7 @@ PROGRAM = {
             120,
             "Z-Space Arts + Technology Society",
             "Deploy a Python app with an LLM integration to the cloud.",
-            ["Mei-Ling Zhou"],
+            ["Xiaoyu Chen"],
         ),
     ],
     2026: [
@@ -127,9 +127,9 @@ PROGRAM = {
 ORGANIZERS = [
     # username, first, last, superuser, affiliations
     (
-        "priya_n",
-        "Priya",
-        "Natarajan",
+        "kavitha_r",
+        "Kavitha",
+        "Ramesh",
         True,
         [(AffiliationKind.PROJECT, "Django", "https://github.com/django/django")],
     ),
@@ -177,7 +177,7 @@ def run(stdout):
     for year in (2025, 2026, 2027):
         editions[year] = _edition(year, active=(year == 2026))
     for year, items in PROGRAM.items():
-        _program(editions[year], items, organizers["priya_n"])
+        _program(editions[year], items, organizers["kavitha_r"])
     _upcoming_workshop(editions[2027])
     for year, nights in NIGHTS.items():
         _event_dates(editions[year], nights)
@@ -197,7 +197,7 @@ def run(stdout):
     result = import_csv(ticketing, REGISTRANTS)
     stdout.write(f"Imported {result.imported} Luma registrant(s).")
     stdout.write(
-        f"Sign in as priya_n, yuki_t, fatima_a or chioma_o; speakers by email "
+        f"Sign in as kavitha_r, yuki_t, fatima_a or chioma_o; speakers by email "
         f"local part (sofia.alvarez). Password: {PASSWORD}"
     )
 
@@ -432,7 +432,11 @@ def _volunteering(edition, organizers):
         )
     teams = {}
     for name, description, lead in (
-        ("Organizers", "Plan the year's meetups, find venues and speakers", "priya_n"),
+        (
+            "Organizers",
+            "Plan the year's meetups, find venues and speakers",
+            "kavitha_r",
+        ),
         ("Meetup hosts", "Run the room on the night", "yuki_t"),
     ):
         team, _ = Team.objects.get_or_create(
@@ -444,7 +448,7 @@ def _volunteering(edition, organizers):
         leads[lead].teams.add(team)
         teams[name] = team
     # Access comes from the active edition's teams: both organizers run the
-    # chapter's year through the Organizers team; only Priya is a
+    # chapter's year through the Organizers team; only Kavitha is a
     # superuser.
     organizers_team = teams["Organizers"]
     organizers_team.permissions.set(permissions_for(PRESETS[ORGANIZERS_TEAM].members))
@@ -461,7 +465,9 @@ def _volunteering(edition, organizers):
             defaults={
                 "application_status": status,
                 "availability_hours_per_week": 2,
-                "github_username": username,
+                # Invented people: a Discord handle to show the feature, which
+                # links nowhere; no GitHub handle, which would.
+                "github_username": "",
                 "discord_username": username,
             },
         )
