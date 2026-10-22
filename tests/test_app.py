@@ -40,6 +40,7 @@ def test_the_procfile_and_heroku_yml_run_the_same_processes():
     step and the two required processes must not drift apart."""
     procfile = {}
     for line in (COMMUNITY / "Procfile").read_text().splitlines():
+        line = line.strip()
         if line and not line.startswith("#"):
             name, command = line.split(":", 1)
             procfile[name] = command.strip()
