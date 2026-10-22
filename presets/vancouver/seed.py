@@ -2,8 +2,8 @@
 (https://vancouver.pyladies.com/): a meetup group, one edition per year,
 each meetup's talks as sessions in the venue's room. In person, free, no
 recordings, the PyLadies Slack as the chat, registrations from Luma as a
-CSV. Organizers and speakers as the site lists them; emails are invented
-(example.org); volunteers and registrants are made up.
+CSV. Every person is invented, names and example.org emails alike; the
+venues and nights are the chapter's real ones.
 
 Loaded by ``manage.py load_preset``; it lives in the community's own
 repository, not the core's, because it is a real community's data.
@@ -71,7 +71,7 @@ PROGRAM = {
             "Northeastern University Vancouver",
             "International Women's Day celebration: building emotion-aware AI "
             "with Python.",
-            ["Hazra Imran"],
+            ["Ananya Krishnan"],
         ),
         (
             "From Curiosity to Cloud: A Hands-On Python Workshop",
@@ -81,7 +81,7 @@ PROGRAM = {
             120,
             "Z-Space Arts + Technology Society",
             "Deploy a Python app with an LLM integration to the cloud.",
-            ["Linda Lee"],
+            ["Mei-Ling Zhou"],
         ),
     ],
     2026: [
@@ -93,7 +93,7 @@ PROGRAM = {
             25,
             "Improving Vancouver",
             "July meetup on AI agents and LLMs. Pizza provided.",
-            ["Melanie Warrick"],
+            ["Sofia Alvarez"],
         ),
         (
             "A practical introduction to generative AI and LLMs",
@@ -103,7 +103,7 @@ PROGRAM = {
             25,
             "Improving Vancouver",
             "July meetup on AI agents and LLMs.",
-            ["Daniel Chen"],
+            ["Tomas Herrera"],
         ),
         (
             "PyLadies x R-Ladies Vancouver Lightning Talks",
@@ -115,10 +115,10 @@ PROGRAM = {
             "Joint lightning talks night with R-Ladies Vancouver: five to "
             "fifteen minutes each.",
             [
-                "Daria Linhart Grudzien",
-                "Maksym Shalenyi",
-                "Sophia Chu",
-                "Melissa Bather",
+                "Zanele Dlamini",
+                "Noor Haddad",
+                "Aisha Rahman",
+                "Kai Nakamura",
             ],
         ),
     ],
@@ -127,28 +127,28 @@ PROGRAM = {
 ORGANIZERS = [
     # username, first, last, superuser, affiliations
     (
-        "mariatta",
-        "Mariatta",
-        "Wijaya",
+        "priya_n",
+        "Priya",
+        "Natarajan",
         True,
-        [(AffiliationKind.PROJECT, "CPython", "https://github.com/python/cpython")],
+        [(AffiliationKind.PROJECT, "Django", "https://github.com/django/django")],
     ),
-    ("eliza", "Eliza", "Sarobhasa", False, []),
+    ("yuki_t", "Yuki", "Tanaka", False, []),
 ]
 
 VOLUNTEERS = [
     # username, first, last, status, team
-    ("jen_k", "Jen", "Kwan", ApplicationStatus.APPROVED, "Meetup hosts"),
-    ("amira_s", "Amira", "Saleh", ApplicationStatus.APPROVED, "Meetup hosts"),
-    ("lucia_m", "Lucia", "Moreno", ApplicationStatus.PENDING, None),
+    ("fatima_a", "Fatima", "Al-Rashid", ApplicationStatus.APPROVED, "Meetup hosts"),
+    ("ingrid_b", "Ingrid", "Bergstrom", ApplicationStatus.APPROVED, "Meetup hosts"),
+    ("chioma_o", "Chioma", "Okafor", ApplicationStatus.PENDING, None),
 ]
 
 REGISTRANTS = """Name,Email,Ticket
 Ada Example,ada@example.org,General admission
 Bea Example,bea@example.org,General admission
 Cleo Example,cleo@example.org,General admission
-Melanie Warrick,melanie.warrick@example.org,Speaker
-Daniel Chen,daniel.chen@example.org,Speaker
+Sofia Alvarez,sofia.alvarez@example.org,Speaker
+Tomas Herrera,tomas.herrera@example.org,Speaker
 """
 
 # year -> [(day, label, venue)]: the nights each edition meets.
@@ -177,7 +177,7 @@ def run(stdout):
     for year in (2025, 2026, 2027):
         editions[year] = _edition(year, active=(year == 2026))
     for year, items in PROGRAM.items():
-        _program(editions[year], items, organizers["mariatta"])
+        _program(editions[year], items, organizers["priya_n"])
     _upcoming_workshop(editions[2027])
     for year, nights in NIGHTS.items():
         _event_dates(editions[year], nights)
@@ -197,8 +197,8 @@ def run(stdout):
     result = import_csv(ticketing, REGISTRANTS)
     stdout.write(f"Imported {result.imported} Luma registrant(s).")
     stdout.write(
-        f"Sign in as mariatta, eliza, jen_k or lucia_m; speakers by email "
-        f"local part (melanie.warrick). Password: {PASSWORD}"
+        f"Sign in as priya_n, yuki_t, fatima_a or chioma_o; speakers by email "
+        f"local part (sofia.alvarez). Password: {PASSWORD}"
     )
 
 
@@ -425,15 +425,15 @@ def _volunteering(edition, organizers):
                 "application_status": ApplicationStatus.APPROVED,
                 "region": Region.NORTH_AMERICA,
                 "availability_hours_per_week": 4,
-                # Real people: a handle only where they publish one.
-                "github_username": username if username == "mariatta" else "",
+                # Invented people: no handles, so nothing points at a real account.
+                "github_username": "",
                 "discord_username": "",
             },
         )
     teams = {}
     for name, description, lead in (
-        ("Organizers", "Plan the year's meetups, find venues and speakers", "mariatta"),
-        ("Meetup hosts", "Run the room on the night", "eliza"),
+        ("Organizers", "Plan the year's meetups, find venues and speakers", "priya_n"),
+        ("Meetup hosts", "Run the room on the night", "yuki_t"),
     ):
         team, _ = Team.objects.get_or_create(
             conference=edition,
@@ -444,7 +444,7 @@ def _volunteering(edition, organizers):
         leads[lead].teams.add(team)
         teams[name] = team
     # Access comes from the active edition's teams: both organizers run the
-    # chapter's year through the Organizers team; only Mariatta is a
+    # chapter's year through the Organizers team; only Priya is a
     # superuser.
     organizers_team = teams["Organizers"]
     organizers_team.permissions.set(permissions_for(PRESETS[ORGANIZERS_TEAM].members))
