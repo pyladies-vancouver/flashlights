@@ -5,10 +5,10 @@ instance: a meetup group with one edition per year, each meetup's talks as sessi
 
 This repository holds only what is PyLadies Vancouver's. The core is consumed
 as an image, never copied: `Dockerfile` starts `FROM
-ghcr.io/mariatta/flashlights:0.1.0` and adds the `flashlights_vancouver` app, which the
+ghcr.io/mariatta/flashlights:0.2.0` and adds the `flashlights_vancouver` app, which the
 core loads through `EXTRA_APPS`. Upgrading the core is a one-line change to
 that tag, in a pull request that CI checks against PyLadies Vancouver's own
-data. The core's [community apps guide](https://docs.flashlights.app/0.1.0/developer/community_apps/)
+data. The core's [community apps guide](https://docs.flashlights.app/0.2.0/developer/community_apps/)
 is the contract this repository relies on.
 
 ## What is here
@@ -55,7 +55,7 @@ and rollback.
 - A need the core cannot meet by configuration is a core
   extension point first (a setting, a signal, a template block), then this
   app uses it. Copying a core template into `flashlights_vancouver/templates/` is the last
-  resort, and the [adapting guide](https://docs.flashlights.app/0.1.0/user/adapting/)
+  resort, and the [adapting guide](https://docs.flashlights.app/0.2.0/user/adapting/)
   says what a copy costs at upgrade time.
 
 ## Upgrading the core
