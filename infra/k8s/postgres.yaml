@@ -1,0 +1,35 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: vancouver-flashlights
+spec:
+  instances: 2
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.2
+  certificates:
+    serverTLSSecret: vancouver-flashlights-tls
+    serverCASecret: operators-ca-crt
+  storage:
+    size: 10Gi
+  bootstrap:
+    initdb:
+      database: vancouver-flashlights
+      owner: vancouver-flashlights
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://cnpg-backup/postgres/vancouver-flashlights
+      endpointURL: https://minio-api.us-east-2.psfhosted.computer
+      s3Credentials:
+        accessKeyId:
+          key: ACCESS_KEY_ID
+          name: minio-creds
+        secretAccessKey:
+          key: ACCESS_SECRET_KEY
+          name: minio-creds
+    target: primary
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vancouver-flashlights-tls
+  labels:
+    cnpg.io/reload: ""
