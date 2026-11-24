@@ -1,0 +1,11 @@
+namespace: redis
+
+resources:
+  - cert-redis.yaml
+  - redis.yaml
+
+namespace: postgres
+
+resources:
+  - cert-postgres.yaml
+  - postgres.yaml

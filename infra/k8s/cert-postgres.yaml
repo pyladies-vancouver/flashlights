@@ -1,0 +1,36 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vancouver-flashlights-certmanager
+spec:
+  secretName: vancouver-flashlights-tls
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  subject:
+    organizations:
+    - 
+  commonName: vancouver-flashlights
+  isCA: false
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  usages:
+  - digital signature
+  - key encipherment
+  dnsNames:
+  - vancouver-flashlights-rw
+  - vancouver-flashlights-rw.postgres
+  - vancouver-flashlights-rw.postgres.svc
+  - vancouver-flashlights-rw.postgres.svc.cluster.local
+  - vancouver-flashlights-r
+  - vancouver-flashlights-r.postgres
+  - vancouver-flashlights-r.postgres.svc
+  - vancouver-flashlights-r.postgres.svc.cluster.local
+  - vancouver-flashlights-ro
+  - vancouver-flashlights-ro.postgres
+  - vancouver-flashlights-ro.postgres.svc
+  - vancouver-flashlights-ro.postgres.svc.cluster.local
+  issuerRef:
+    name: operators-ca-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io

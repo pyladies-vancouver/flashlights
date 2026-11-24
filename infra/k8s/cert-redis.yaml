@@ -1,0 +1,36 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vancouver-flashlights-certmanager
+spec:
+  secretName: vancouver-flashlights-tls
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  subject:
+    organizations:
+    - vancouver-flashlights-org
+  commonName: vancouver-flashlights
+  isCA: false
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  usages:
+  - digital signature
+  - key encipherment
+  dnsNames:
+  - vancouver-flashlights
+  - vancouver-flashlights.redis
+  - vancouver-flashlights.redis.svc
+  - vancouver-flashlights.redis.svc.cluster.local
+  - vancuver-flashlights-0
+  - vancouver-flashlights-0.redis
+  - vancouver-flashlights-0.redis.svc
+  - vancouver-flashlights-0.redis.svc.cluster.local
+  - vancouver-flashlights-1
+  - vancouver-flashlights-1.redis
+  - vancouver-flashlights-1.redis.svc
+  - vancouver-flashlights-1.redis.svc.cluster.local
+  issuerRef:
+    name: operators-ca-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io
